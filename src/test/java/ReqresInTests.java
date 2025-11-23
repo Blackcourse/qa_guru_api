@@ -1,11 +1,8 @@
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.is;
 
-public class ReqresInTests {
-    private static final Logger log = LoggerFactory.getLogger(ReqresInTests.class);
+public class ReqresInTests extends TestBase {
 
     String uncorrectUserData=  "{\"email\": \"sdf.ddd@regres.in\", \"password\": \"dsfdsficka\"}";
 
@@ -14,7 +11,7 @@ public class ReqresInTests {
         given()
                 .log().uri()
                 .header("X-API-Key", "reqres-free-v1")
-                .get("https://reqres.in/api/users")
+                .get("/users")
                 .then()
                 .log().body()
                 .log().status()
@@ -25,11 +22,12 @@ public class ReqresInTests {
     void getUsersWithoutHeadersTest () {
         given()
                 .log().uri()
-                .get("https://reqres.in/api/users")
+                .get("/users")
                 .then()
                 .log().body()
                 .log().status()
-                .statusCode(401);
+                .statusCode(401)
+                .body("error", is ("Missing API key"));
     }
 
 
@@ -38,7 +36,7 @@ public class ReqresInTests {
         given()
                 .log().uri()
                 .header("X-API-Key", "reqres-free-v1")
-                .get("https://reqres.in/api/users/255")
+                .get("/users/255")
                 .then()
                 .log().body()
                 .log().status()
@@ -47,15 +45,16 @@ public class ReqresInTests {
 
 
     @Test
-    void unsuccessfulLRegistrationUserTest () {
+    void unsuccessRegistrationUserTest () {
         given()
                 .body(uncorrectUserData)
                 .log().uri()
-                .post("https://reqres.in/api/users")
+                .post("/users")
                 .then()
                 .log().body()
                 .log().status()
-                .statusCode(415);
+                .statusCode(415)
+                .body("error", is ("unsupported_charset"));
     }
 
     @Test
@@ -63,11 +62,12 @@ public class ReqresInTests {
         given()
                 .log().uri()
                 .header("X-API-Key", "reqres-free-v1")
-                .delete("https://reqres.in/api/users/2")
+                .delete("/users/2")
                 .then()
                 .log().body()
                 .log().status()
                 .statusCode(204);
+
     }
 
 
