@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 public class ReqresInTests extends TestBase {
@@ -15,7 +16,8 @@ public class ReqresInTests extends TestBase {
                 .then()
                 .log().body()
                 .log().status()
-                .statusCode(200);
+                .statusCode(200)
+                .body("data[5].first_name", equalTo("Tracey"));
 
     }
     @Test
@@ -32,15 +34,16 @@ public class ReqresInTests extends TestBase {
 
 
     @Test
-    void getRandomUserTest () {
+    void getAvatarFromUser7 () {
         given()
                 .log().uri()
                 .header("X-API-Key", "reqres-free-v1")
-                .get("/users/255")
+                .get("/users/7")
                 .then()
                 .log().body()
                 .log().status()
-                .statusCode(404);
+                .statusCode(200)
+                .body("data.avatar", is("https://reqres.in/img/faces/7-image.jpg"));
     }
 
 
