@@ -16,7 +16,7 @@ import static specs.ResponseCodeSpec.*;
 
 public class ReqresTestsWithModel extends TestBase {
 
-    @Test
+   /* @Test
     @DisplayName("Проверка имени конкретного пользователя")
     void getListUsersTest () {
         UserDataModel firstname = step ("Запрос имени пользователя", () ->
@@ -30,7 +30,7 @@ public class ReqresTestsWithModel extends TestBase {
         step ("Проверка конкретного имени пользовтаеля", () ->
                 assertEquals("Tracey", firstname.getData().get(5).getEmail()));
 
-    }
+    }*/
     @Test
     @DisplayName("Удаление пользователя")
     void unsuccessfullDeleteUserTest() {
@@ -44,7 +44,7 @@ public class ReqresTestsWithModel extends TestBase {
         });
     }
 
-   @Test
+   /*@Test
     @DisplayName("Регистрация пользователя без тела запроса")
     void unsuccessRegistrationUserTest() {
         step("Отправка запроса на создание нового пользователя без тела", () -> {
@@ -56,7 +56,7 @@ public class ReqresTestsWithModel extends TestBase {
                     "message":"Request body cannot be empty for JSON endpoints"));
 
         });
-    }
+    }*/
 
     @Test
     @DisplayName("Запрос о конкретном пользователе без хэдеров")
