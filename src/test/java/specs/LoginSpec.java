@@ -13,17 +13,14 @@ public class LoginSpec {
             .log().body()
             .log().headers()
             .contentType(JSON)
-            .baseUri("https://reqres.in")
-            .basePath("api/login")
-            .header("X-API-Key", "reqres-free-v1");
+            .header("x-api-key", "reqres_382e7023e98e493785b41b2d0ae12a06");
 
     public static RequestSpecification loginRequestWithoutHeaders= with ()
             .filter(withCustomTemplates())
             .log().uri()
             .log().body()
             .log().headers()
-            .contentType(JSON)
-            .baseUri("https://reqres.in");
+            .contentType(JSON);
 
 
 
@@ -33,8 +30,8 @@ public class LoginSpec {
             .log().body()
             .log().headers()
             .contentType(JSON)
-            .baseUri("https://reqres.in")
-            .header("X-API-Key", "reqres-free-v1");
+            .header("x-api-key", "reqres_382e7023e98e493785b41b2d0ae12a06");
+
 
 
 

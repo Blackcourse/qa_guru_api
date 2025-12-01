@@ -20,7 +20,7 @@ public class ReqresTestsWithModel extends TestBase {
                 .when ()
                 .get("/users")
                 .then()
-                .spec(responseSpec200)
+                .spec(responseSpecificationBuilder(200))
                 .extract().as(UserDataResponseModel.class));
 
         step ("Проверка конкретного имени пользовтаеля", () ->
@@ -37,7 +37,7 @@ public class ReqresTestsWithModel extends TestBase {
                     .when()
                     .delete("/users/4")
                     .then()
-                    .spec(responseSpec204);
+                    .spec(responseSpecificationBuilder(204));
         });
     }
 
@@ -49,7 +49,7 @@ public class ReqresTestsWithModel extends TestBase {
                     .when()
                     .post("/users")
                     .then()
-                    .spec(responseSpec400).
+                    .spec(responseSpecificationBuilder(400)).
                     body("error", equalTo("Empty request body"));
 
         });
@@ -63,8 +63,8 @@ public class ReqresTestsWithModel extends TestBase {
                 .when()
                 .get("/users/1")
                 .then()
-                .spec(responseSpec401)
-                .body("error", is ("Missing API key"));
+                .spec(responseSpecificationBuilder(401))
+                .body("error", is ("api_key_required"));
         });
     }
 
@@ -76,7 +76,7 @@ public class ReqresTestsWithModel extends TestBase {
                 .when ()
                 .get("/users")
                 .then()
-                .spec(responseSpec200)
+                .spec(responseSpecificationBuilder(200))
                 .extract().as(UserDataResponseModel.class));
 
         step ("Проверка аватара пользователя", () ->

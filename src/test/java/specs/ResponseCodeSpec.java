@@ -1,6 +1,7 @@
 package specs;
 
 import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.filter.log.LogDetail;
 import io.restassured.specification.ResponseSpecification;
 
 import static io.restassured.filter.log.LogDetail.BODY;
@@ -16,37 +17,12 @@ public class ResponseCodeSpec {
 
 
 
-    public static ResponseSpecification responseSpec200 = new ResponseSpecBuilder()
-            .expectStatusCode(200)
-            .log(STATUS)
-            .log(BODY)
-            .build();
-
-
-
-    public static ResponseSpecification responseSpec204 = new ResponseSpecBuilder()
-            .expectStatusCode(204)
-            .log(STATUS)
-            .log(BODY)
-            .build();
-
-
-    public static ResponseSpecification responseSpec400 = new ResponseSpecBuilder()
-            .expectStatusCode(400)
-            .log(STATUS)
-            .log(BODY)
-            .build();
-
-    public static ResponseSpecification responseSpecificationDelete = new ResponseSpecBuilder()
-            .log(STATUS)
-            .expectStatusCode(204)
-            .build();
-
-    public static ResponseSpecification responseSpec401 = new ResponseSpecBuilder()
-            .expectStatusCode(401)
-            .log(STATUS)
-            .log(BODY)
-            .build();
+    public static ResponseSpecification responseSpecificationBuilder(int statusCode) {
+        return new ResponseSpecBuilder()
+                .log(LogDetail.ALL)
+                .expectStatusCode(statusCode)
+                .build();
+    }
 
 
 
