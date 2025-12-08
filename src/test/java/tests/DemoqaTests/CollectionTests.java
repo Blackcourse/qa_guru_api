@@ -18,7 +18,7 @@ import static specs.DemoQaSpec.responseSpec;
 import static tests.DemoqaTests.TestData.login;
 import static tests.DemoqaTests.TestData.password;
 
-@Tag("demoqa_tests")
+
 public class CollectionTests extends TestBase {
 
         @Test
@@ -51,7 +51,7 @@ public class CollectionTests extends TestBase {
                 String bookData = format("{\"userId\":\"%s\",\"collectionOfIsbns\":[{\"isbn\":\"%s\"}]}",
                         authResponse.path("userId"),isbn);
 
-                step("Add one book to the collection", ()->
+                step("Добавление книги в коллекцию", ()->
                         given(baseSpec)
                                 .header("Authorization", "Bearer " + authResponse.path("token"))
                                 .body(bookData)
@@ -60,19 +60,19 @@ public class CollectionTests extends TestBase {
                                 .then()
                                 .spec(responseSpec(201)));
 
-                step("Open page with icon", ()->
+                step("Открытие страницы", ()->
                         open("/favicon.ico"));
 
-                step("Add Cookie", ()-> {
+                step("Добавление куки", ()-> {
                     getWebDriver().manage().addCookie(new Cookie("userID", authResponse.path("userId")));
                     getWebDriver().manage().addCookie(new Cookie("expires", authResponse.path("expires")));
                     getWebDriver().manage().addCookie(new Cookie("token", authResponse.path("token")));
                 });
 
-                step("Open user profile page", ()->
+                step("Отрытие профиля пользователя", ()->
                         open("/profile"));
 
-                step("Check the book in the collection", ()->
+                step("Проверка книги в коллекции", ()->
                         $(".ReactTable").shouldHave(text("Speaking JavaScript")));
             }
 
@@ -96,7 +96,7 @@ public class CollectionTests extends TestBase {
                 deleteBookData.setUserId(authResponse.path("userId"));
                 deleteBookData.setIsbn("isbn");
 
-                step("Delete one book from the collection", ()->
+                step("Удаление книги из коллекции", ()->
                         given(baseSpec)
                                 .header("Authorization", "Bearer " + authResponse.path("token"))
                                 .body(deleteBookData)
@@ -109,7 +109,7 @@ public class CollectionTests extends TestBase {
                 String bookData = format("{\"userId\":\"%s\",\"collectionOfIsbns\":[{\"isbn\":\"%s\"}]}",
                         authResponse.path("userId") , isbn);
 
-                step("Add one book to the collection", ()->
+                step("Добавление книги в коллекцию", ()->
                         given(baseSpec)
                                 .header("Authorization", "Bearer " + authResponse.path("token"))
                                 .body(bookData)
@@ -118,18 +118,18 @@ public class CollectionTests extends TestBase {
                                 .then()
                                 .spec(responseSpec(201)));
 
-                step("Open page with icon", ()->
+                step("Открытие страницы", ()->
                         open("/favicon.ico"));
 
-                step("Add Cookie", ()-> {
+                step("Добавление куки", ()-> {
                     getWebDriver().manage().addCookie(new Cookie("userID", authResponse.path("userId")));
                     getWebDriver().manage().addCookie(new Cookie("expires", authResponse.path("expires")));
                     getWebDriver().manage().addCookie(new Cookie("token", authResponse.path("token")));
                 });
-                step("Open user profile page", ()->
+                step("Открытие профиля", ()->
                         open("/profile"));
 
-                step("Check book in the collection", ()->
+                step("Проверки книги в коллекции", ()->
                         $(".ReactTable").shouldHave(text("Speaking JavaScript")));
             }
         }
