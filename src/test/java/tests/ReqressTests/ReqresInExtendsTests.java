@@ -1,10 +1,11 @@
-package tests;
+package tests.ReqressTests;
 
 import models.LoginBodyModel;
 import models.LoginResponseModel;
 import models.lombok.LoginBodyLombokModel;
 import models.lombok.LoginResponseLombokModel;
 import org.junit.jupiter.api.Test;
+
 import static helpers.CustomAllureListener.withCustomTemplates;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
@@ -14,9 +15,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static specs.LoginSpec.loginRequestSpec;
 
-public class ReqresInExtendsTests extends TestBase   {
-
-
+public class ReqresInExtendsTests extends TestBaseAPI {
 
     @Test
     void successfulLoginPojoTest() {
@@ -30,7 +29,7 @@ public class ReqresInExtendsTests extends TestBase   {
                 .log().uri()
                 .log().body()
                 .log().headers()
-                .header("X-API-Key", "reqres-free-v1")
+                .header("X-API-Key", "reqres_382e7023e98e493785b41b2d0ae12a06")
 
                 .when()
                 .post("/login")
@@ -57,7 +56,7 @@ public class ReqresInExtendsTests extends TestBase   {
                 .log().uri()
                 .log().body()
                 .log().headers()
-                .header("X-API-Key", "reqres-free-v1")
+                .header("X-API-Key", "reqres_382e7023e98e493785b41b2d0ae12a06")
 
                 .when()
                 .post("/login")
@@ -86,7 +85,7 @@ public class ReqresInExtendsTests extends TestBase   {
                 .log().uri()
                 .log().body()
                 .log().headers()
-                .header("X-API-Key", "reqres-free-v1")
+                .header("X-API-Key", "reqres_382e7023e98e493785b41b2d0ae12a06")
 
                 .when()
                 .post("/login")

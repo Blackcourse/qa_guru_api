@@ -1,4 +1,4 @@
-package tests;
+package tests.ReqressTests;
 import models.lombok.UserDataResponseModel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static specs.LoginSpec.*;
 import static specs.ResponseCodeSpec.*;
 
-public class ReqresTestsWithModel extends TestBase {
+public class ReqresTestsWithModel extends TestBaseAPI {
 
    @Test
     @DisplayName("Проверка имени конкретного пользователя")
