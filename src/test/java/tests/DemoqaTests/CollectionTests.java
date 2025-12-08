@@ -18,7 +18,7 @@ import static specs.DemoQaSpec.responseSpec;
 import static tests.DemoqaTests.TestData.login;
 import static tests.DemoqaTests.TestData.password;
 
-@Tag("demoqa_tests")
+
 public class CollectionTests extends TestBase {
 
         @Test
