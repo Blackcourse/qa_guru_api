@@ -16,7 +16,6 @@ public class ResponseCodeSpec {
             .build();
 
 
-
     public static ResponseSpecification responseSpecificationBuilder(int statusCode) {
         return new ResponseSpecBuilder()
                 .log(LogDetail.ALL)
