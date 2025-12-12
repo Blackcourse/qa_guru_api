@@ -40,22 +40,32 @@ dependencies {
             'org.junit.jupiter:junit-jupiter',
     )
 }
-
 tasks.withType(Test) {
-    useJUnitPlatform()
     systemProperties(System.getProperties())
+
+    useJUnitPlatform()
+
     testLogging {
         lifecycle {
-            events "started", "skipped", "failed", "standard_error", "standard_out"
+            events "passed", "skipped", "failed", "standard_error", "standard_out"
             exceptionFormat "short"
         }
     }
 }
+
 tasks.register('demoqa_tests', Test) {
     useJUnitPlatform {
-        includeTags("api_demoqa_tests")
+        includeTags("demoqa_tests")
     }
 }
+
+tasks.register('api_demoqa_one_book_test', Test) {
+    useJUnitPlatform {
+        includeTags("api_demoqa_one_book_test")
+    }
+}
+
+
 
 
 
