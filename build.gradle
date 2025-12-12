@@ -51,6 +51,11 @@ tasks.withType(Test) {
         }
     }
 }
+tasks.register('demoqa_tests', Test) {
+    useJUnitPlatform {
+        includeTags("api_demoqa_tests")
+    }
+}
 
 
 
