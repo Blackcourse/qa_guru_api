@@ -1,4 +1,4 @@
-package tests.ReqressTests;
+package tests.reqressTests;
 import models.lombok.UserDataResponseModel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

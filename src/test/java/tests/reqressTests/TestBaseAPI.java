@@ -1,4 +1,4 @@
-package tests.ReqressTests;
+package tests.reqressTests;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;

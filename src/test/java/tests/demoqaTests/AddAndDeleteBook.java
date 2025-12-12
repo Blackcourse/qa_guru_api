@@ -1,25 +1,30 @@
-package tests.DemoqaTests;
+package tests.demoqaTests;
 import io.restassured.response.Response;
+import models.BookDataModel;
 import models.AuthorizationModel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import pages.FaviconPage;
+import pages.ProfilePage;
+import java.util.Collections;
+import static tests.demoqaTests.TestData.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
-import static java.lang.String.format;
 import static specs.DemoQaSpec.baseSpec;
 import static specs.DemoQaSpec.responseSpec;
-import static tests.DemoqaTests.TestData.login;
-import static tests.DemoqaTests.TestData.password;
 
 
+
+@Tag("demoqa_tests")
 public class AddAndDeleteBook extends TestBase {
-    @Tag("demoqa_tests")
+
+   FaviconPage faviconPage=new FaviconPage();
+   ProfilePage profilePage=new ProfilePage();
+
+
     @Test
     @DisplayName("Добавление и удаление книги в коллекции пользователя")
     void addAndDeleteBookToCollectionTest() {
@@ -45,9 +50,11 @@ public class AddAndDeleteBook extends TestBase {
                         .then()
                         .spec(responseSpec(204)));
 
-        String isbn = "9781449365035";
-        String bookData = format("{\"userId\":\"%s\",\"collectionOfIsbns\":[{\"isbn\":\"%s\"}]}",
-                authResponse.path("userId"),isbn);
+        BookDataModel bookData = new BookDataModel();
+        BookDataModel.CollectionOfIsbns isbnCollection = new BookDataModel.CollectionOfIsbns();
+        bookData.setUserId(authResponse.path("userId"));
+        isbnCollection.setIsbn(isbn);
+        bookData.setCollectionOfIsbns(Collections.singletonList(isbnCollection));
 
         step("Добавление книги в коллекцию", ()->
                 given(baseSpec)
@@ -58,30 +65,22 @@ public class AddAndDeleteBook extends TestBase {
                         .then()
                         .spec(responseSpec (201)));
 
-        step("Oткрытие страницы", ()->
-                open("/favicon.ico"));
+        faviconPage.openPage();
 
-        step("Добавление куки", ()-> {
-            getWebDriver().manage().addCookie(new org.openqa.selenium.Cookie("userID", authResponse.path("userId")));
-            getWebDriver().manage().addCookie(new org.openqa.selenium.Cookie("expires", authResponse.path("expires")));
-            getWebDriver().manage().addCookie(new Cookie("token", authResponse.path("token")));
-        });
+        step("Добавление куки", () -> {
 
-        step("Открытие профиля", ()->
-                open("/profile"));
+        getWebDriver().manage().addCookie(new Cookie("userID", authResponse.path("userId")));
+        getWebDriver().manage().addCookie(new Cookie("expires", authResponse.path("expires")));
+        getWebDriver().manage().addCookie(new Cookie("token", authResponse.path("token")));
+    });
 
-        step("Проверка имени: " + login + " на странице", ()->
-                $("#userName-value").shouldHave(text(login)));
+ profilePage.openProfilePage()
+         .checkUserName()
+                .checkBookInCollection()
+                .deleteOneBookInCollection()
+                .checkCollectionIsEmpty();
 
-        step("Проверка наличиия книги в коллекции", ()->
-                $(".ReactTable").shouldHave(text("Speaking JavaScript")));
 
-        step("Удалить книгу из коллекции", ()-> {
-            $("#delete-record-undefined").click();
-            $("#closeSmallModal-ok").click();
-        });
-        step("Проверка пустой коллекции", ()->
-                $(".rt-noData").shouldHave(text("No rows found")));
     }
 }
 

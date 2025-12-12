@@ -1,4 +1,4 @@
-package tests.DemoqaTests;
+package tests.demoqaTests;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
@@ -6,8 +6,8 @@ import org.openqa.selenium.Cookie;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static tests.DemoqaTests.TestData.login;
-import static tests.DemoqaTests.TestData.password;
+import static tests.demoqaTests.TestData.login;
+import static tests.demoqaTests.TestData.password;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 
