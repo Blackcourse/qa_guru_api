@@ -1,4 +1,4 @@
-package tests.ReqressTests;
+package tests.reqressTests;
 
 import models.LoginBodyModel;
 import models.LoginResponseModel;
