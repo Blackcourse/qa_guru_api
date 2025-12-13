@@ -13,7 +13,7 @@ import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static specs.LoginSpec.loginRequestSpec;
+import static specs.LoginReqressInSpec.loginRequestSpec;
 
 public class ReqresInExtendsTests extends TestBaseAPI {
 

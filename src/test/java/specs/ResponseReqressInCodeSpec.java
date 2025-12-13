@@ -7,7 +7,7 @@ import io.restassured.specification.ResponseSpecification;
 import static io.restassured.filter.log.LogDetail.BODY;
 import static io.restassured.filter.log.LogDetail.STATUS;
 
-public class ResponseCodeSpec {
+public class ResponseReqressInCodeSpec {
 
     public static ResponseSpecification loginResponseSpec= new ResponseSpecBuilder()
             .expectStatusCode(200)
