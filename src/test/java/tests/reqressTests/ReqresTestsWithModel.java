@@ -7,8 +7,8 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static specs.LoginSpec.*;
-import static specs.ResponseCodeSpec.*;
+import static specs.LoginReqressInSpec.*;
+import static specs.ResponseReqressInCodeSpec.*;
 
 public class ReqresTestsWithModel extends TestBaseAPI {
 

@@ -6,7 +6,7 @@ import static helpers.CustomAllureListener.withCustomTemplates;
 import static io.restassured.RestAssured.with;
 import static io.restassured.http.ContentType.JSON;
 
-public class LoginSpec {
+public class LoginReqressInSpec {
     public static RequestSpecification loginRequestSpec= with ()
             .filter(withCustomTemplates())
             .log().uri()
